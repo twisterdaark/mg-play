@@ -835,7 +835,8 @@
   .so-qs { display: flex; flex-direction: column; gap: 8px; }
   .so-q { display: flex; gap: 10px; align-items: baseline; text-align: start; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--wall-line); background: var(--wall-raise); color: var(--wall-text); font: 600 15px/1.6 var(--f-ui); }
   .so-q b { color: var(--lamp); flex-shrink: 0; }
-  .so-q.locked { opacity: .45; text-decoration: line-through; }
+  .so-q.locked { opacity: .55; flex-wrap: wrap; }
+  .so-buy { flex-basis: 100%; display: inline-flex; align-items: center; gap: 6px; justify-content: center; margin-top: 8px; padding: 8px 10px; border-radius: 10px; border: 1.5px solid var(--lamp); background: rgba(239, 194, 106, .12); color: var(--lamp); font: 700 14px/1 var(--f-ui); }
   .so-q.picked { border-color: var(--lamp); }
   .so-ans p { font-family: var(--f-body); font-size: 17px; line-height: 1.8; margin: 0; }
   .so-clue { margin: 8px 0 0; }
@@ -1197,6 +1198,7 @@
     { v: '0.14', t: 'المحقق لوحدك', items: [
       'مود جديد: «محقق لوحدك». مفيش حد معاك؟ حقق في القضايا لوحدك: كل يوم دليل جديد، تسمع المشتبه فيهم وتختار سؤال واحد لكل واحد. ومعاك 3 محاولات اتهام بس.',
       'كل قضية في المحقق لوحدك ليها 3 سيناريوهات، والجاني بيتغير في كل واحد.',
+      'البصمات بقى ليها لازمة: افتح سؤال مقفول في التحقيق، أو اشتري محاولة اتهام كمان لما محاولاتك تخلص.',
       'لينك الدعوة بقى يتداس عليه على طول من واتساب وإنستجرام.',
       'تقدر تمسح لوحة شرف القضايا لوحدها، أو المحكمة لوحدها، أو الاتنين.',
       'مقدمة اللعبة بقت أهدى وأطول، وتقدر تتخطاها بدوسة.',
@@ -2038,6 +2040,9 @@
   const SOLO_KEY = 'qadaya.solo.v1'; // "<case>/<script>" -> { won, tries, day }
   const SOLO_CUR = 'qadaya.solo.cur'; // the investigation in progress, so leaving the app doesn't lose it
   const SOLO_TRIES = 3;
+  // «بصمات» extras: open ONE locked line of questioning per suspect per day, or buy a 4th… accusation after running out
+  const SOLO_Q_PRICE = 15, SOLO_TRY_PRICE = 40;
+  const soloExtra = (so, d, id) => ((so.extra || {})[`${d}:${id}`]);
   const soloScripts = (c) => (c && c.scripts ? c.scripts.filter((s) => Array.isArray(s.solo) && s.solo.length) : []);
   const soloCases = () => CASES.filter((c) => soloScripts(c).length);
   const soloView = () => S.so && caseView(S.so.caseId, S.so.scriptId);
@@ -2156,10 +2161,13 @@
       </article>
       <h2 class="so-h">${q == null ? 'اختار خط تحقيق واحد' : 'خط التحقيق بتاعك'}</h2>
       ${q == null ? '<p class="lede small">الاختيارات التانية هتتقفل للأبد.</p>' : ''}
-      <div class="so-qs">${path.map((p, i) => (q == null
-        ? `<button class="so-q" data-act="soloAsk" data-arg="${i}"><b>${i + 1}</b>${esc(p.q)}</button>`
-        : `<div class="so-q ${i === q ? 'picked' : 'locked'}"><b>${i === q ? '✓' : '🔒'}</b>${esc(p.q)}</div>`)).join('')}</div>
-      ${q != null ? `<article class="paper slip so-ans"><div class="report-head"><span>${esc(ch.name)}</span><b>رد</b></div><p>«${esc((path[q] || {}).a || '')}»</p></article>` : ''}
+      <div class="so-qs">${path.map((p, i) => {
+        if (q == null) return `<button class="so-q" data-act="soloAsk" data-arg="${i}"><b>${i + 1}</b>${esc(p.q)}</button>`;
+        const x = soloExtra(so, so.day, ch.id);
+        if (i === q || i === x) return `<div class="so-q picked"><b>✓</b>${esc(p.q)}</div>`;
+        return `<div class="so-q locked"><b>🔒</b>${esc(p.q)}${x == null && walletHere() ? `<button class="so-buy" data-act="soloBuyQ" data-arg="${i}">${COIN_SVG}افتحه بـ ${coins(SOLO_Q_PRICE)}</button>` : ''}</div>`;
+      }).join('')}</div>
+      ${q != null ? [q, soloExtra(so, so.day, ch.id)].filter((k) => k != null).map((k) => `<article class="paper slip so-ans"><div class="report-head"><span>${esc(ch.name)}</span><b>${esc((path[k] || {}).q || 'رد')}</b></div><p>«${esc((path[k] || {}).a || '')}»</p></article>`).join('') : ''}
       <div class="actionbar">${q != null ? '<button class="btn primary" data-act="go" data-arg="soloDay">رجوع للمشتبهين</button>' : ''}</div>
     </div>`;
   };
@@ -2171,8 +2179,10 @@
     const days = v.solo.slice(0, so.day + 1).map((day, d) => {
       const asked = soloAsked(so, d);
       const rows = v.characters.filter((ch) => asked[ch.id] != null).map((ch) => {
-        const p = ((day.paths || {})[ch.id] || [])[asked[ch.id]] || {};
-        return `<li><b>${esc(ch.name)}:</b> ${esc(p.q || '')}<br><span>«${esc(p.a || '')}»</span></li>`;
+        return [asked[ch.id], soloExtra(so, d, ch.id)].filter((k) => k != null).map((k) => {
+          const p = ((day.paths || {})[ch.id] || [])[k] || {};
+          return `<li><b>${esc(ch.name)}:</b> ${esc(p.q || '')}<br><span>«${esc(p.a || '')}»</span></li>`;
+        }).join('');
       }).join('');
       const clue = d <= so.day ? `<p class="hint"><b>دليل ${d + 1}:</b> ${tk(v.nights[d].text)}</p>` : '';
       return rows || clue ? `<article class="paper"><div class="report-head"><span>اليوم ${d + 1}</span></div>${clue}${rows ? `<ul class="so-notes">${rows}</ul>` : ''}</article>` : '';
@@ -2229,6 +2239,14 @@
     </div>`;
   };
 
+  function soloNoCoins(price, lastTry) {
+    modal = {
+      title: 'بصماتك مش كفاية',
+      body: `محتاج ${coins(price)} ومعاك ${coins(WAL.bal)}. هدية كل يوم بتزوّد بصماتك.`,
+      actions: lastTry ? [{ label: 'وريني الحل', act: 'soloLose', cls: 'primary' }] : [{ label: 'تمام', act: 'closeModal', cls: 'primary' }],
+    };
+    render();
+  }
   function soloFinish(won) {
     const so = S.so;
     so.won = won; so.over = true;
@@ -2275,6 +2293,23 @@
       so.picks[so.day] = Object.assign({}, soloAsked(so, so.day), { [so.who]: i });
       buzz(20); SND.play('reveal'); soloSave(); render();
     },
+    soloBuyQ(i) {
+      const so = S.so, id = so.who;
+      i = Number(i);
+      if (!id || soloAsked(so, so.day)[id] == null || soloExtra(so, so.day, id) != null) return;
+      if (WAL.bal < SOLO_Q_PRICE) { soloNoCoins(SOLO_Q_PRICE); return; }
+      WAL.bal -= SOLO_Q_PRICE; walletSave();
+      so.extra = Object.assign({}, so.extra, { [`${so.day}:${id}`]: i });
+      buzz(20); SND.play('reveal'); soloSave(); render();
+    },
+    soloBuyTry() {
+      modal = null;
+      if (WAL.bal < SOLO_TRY_PRICE) { soloNoCoins(SOLO_TRY_PRICE, true); return; }
+      WAL.bal -= SOLO_TRY_PRICE; walletSave();
+      S.so.tries = 1; S.so.bought = (S.so.bought || 0) + 1;
+      SND.play('reveal'); soloSave(); go('soloDay');
+    },
+    soloLose() { modal = null; soloFinish(false); },
     soloClue() { S.so.clue = true; buzz(35); SND.play('hint'); soloSave(); render(); },
     soloNext() {
       const v = soloView();
@@ -2308,7 +2343,16 @@
       if (sel.length === cul.length && sel.every((id) => cul.includes(id))) { soloFinish(true); return; }
       so.tries--; so.wrong = (so.wrong || []).concat([sel]); so.sel = [];
       buzz([60, 40, 60]);
-      if (so.tries <= 0) { soloFinish(false); return; }
+      if (so.tries <= 0) {
+        soloSave(); SND.play('lose');
+        modal = walletHere() ? {
+          title: 'خلصت محاولاتك',
+          body: `الاتهام غلط، ومافضلش معاك محاولات. تقدر تشتري محاولة كمان بـ ${coins(SOLO_TRY_PRICE)} (معاك ${coins(WAL.bal)})، أو تشوف الحل.`,
+          actions: [{ label: `محاولة كمان بـ ${coins(SOLO_TRY_PRICE)}`, act: 'soloBuyTry', cls: 'primary' }, { label: 'وريني الحل', act: 'soloLose' }],
+        } : null;
+        if (!modal) { soloFinish(false); return; }
+        render(); return;
+      }
       SND.play('lose'); soloSave();
       const last = so.day === v.solo.length - 1;
       modal = {
