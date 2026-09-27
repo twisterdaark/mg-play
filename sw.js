@@ -1,5 +1,5 @@
 // «مين الجاني؟» offline cache. Written by tools/build.py: the cache name changes with every build that changes a file.
-const CACHE = 'qadaya-7e1985b993ca';
+const CACHE = 'qadaya-c5eaf5139b7d';
 const FILES = [
  "./",
  "index.html",
@@ -20,12 +20,6 @@ const FILES = [
  "fonts/IBMPlexSansArabic-700-latin.woff2",
  "fonts/NotoNaskhArabic-400-arabic.woff2",
  "fonts/NotoNaskhArabic-400-latin.woff2",
- "fonts/NotoNaskhArabic-500-arabic.woff2",
- "fonts/NotoNaskhArabic-500-latin.woff2",
- "fonts/NotoNaskhArabic-600-arabic.woff2",
- "fonts/NotoNaskhArabic-600-latin.woff2",
- "fonts/NotoNaskhArabic-700-arabic.woff2",
- "fonts/NotoNaskhArabic-700-latin.woff2",
  "fonts/fonts.css",
  "icons/icon-192.png",
  "icons/icon-512.png",
