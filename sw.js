@@ -1,5 +1,5 @@
 // «مين الجاني؟» offline cache. Written by tools/build.py: the cache name changes with every build that changes a file.
-const CACHE = 'qadaya-3fef770932fb';
+const CACHE = 'qadaya-ba394ad9b04d';
 const FILES = [
  "./",
  "index.html",
@@ -32,7 +32,6 @@ const FILES = [
  "icons/maskable-512.png",
  "icons/apple-touch-icon.png"
 ];
-const LOCAL = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(self.location.hostname);
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES.map((f) => new Request(f, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
@@ -46,19 +45,11 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== self.location.origin || url.pathname.includes('/api/')) return;
-  if (LOCAL) {  // on this computer (dev relay): the network first, so a fresh build shows at once; the cache only offline
-    e.respondWith(fetch(req).then((res) => {
-      if (res && res.ok && res.type === 'basic') { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(req.mode === 'navigate' ? 'index.html' : req, copy)); }
-      return res;
-    }).catch(() => caches.open(CACHE).then((c) => c.match(req.mode === 'navigate' ? 'index.html' : req, { ignoreSearch: true }))));
-    return;
-  }
-  if (req.mode === 'navigate') {  // the page itself, also with ?join=… links
-    e.respondWith(caches.open(CACHE).then((c) => c.match('index.html')).then((r) => r || fetch(req)));
-    return;
-  }
-  e.respondWith(caches.open(CACHE).then((c) => c.match(req, { ignoreSearch: true }).then((hit) => hit || fetch(req).then((res) => {
-    if (res && res.ok && res.type === 'basic') c.put(req, res.clone());
+  // network first (asking the server whether the file changed), so a new build shows on the next open;
+  // the cache only answers offline
+  const key = req.mode === 'navigate' ? 'index.html' : req;
+  e.respondWith(fetch(req, { cache: 'no-cache' }).then((res) => {
+    if (res && res.ok && res.type === 'basic') { const copy = res.clone(); caches.open(CACHE).then((c) => c.put(key, copy)); }
     return res;
-  }))));
+  }).catch(() => caches.open(CACHE).then((c) => c.match(key, { ignoreSearch: true }))));
 });
