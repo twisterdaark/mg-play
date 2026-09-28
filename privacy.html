@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سياسة الخصوصية – مين الجاني؟</title>
+<style>
+  body { font-family: "Segoe UI", Tahoma, sans-serif; max-width: 760px; margin: 0 auto; padding: 24px 16px; line-height: 1.8; color: #231E17; background: #F1E6CC; }
+  h1, h2 { line-height: 1.4; }
+  section + section { margin-top: 32px; padding-top: 16px; border-top: 1px solid #CDB88C; }
+  .en { direction: ltr; text-align: left; }
+</style>
+</head>
+<body>
+<section>
+  <h1>سياسة الخصوصية لتطبيق «مين الجاني؟»</h1>
+  <p>آخر تحديث: 28 سبتمبر 2026</p>
+  <p>«مين الجاني؟» لعبة تحقيق جماعية بتتلعب على موبايل واحد من غير نت، أو كل واحد على موبايله. إحنا مش بنعمل حسابات للمستخدمين، ومعندناش سيرفرات بتستقبل بياناتك، ومش بنجمع أي بيانات عنك وإنت بتلعب.</p>
+  <h2>البيانات اللي بتفضل على موبايلك بس</h2>
+  <p>أسامي اللاعبين اللي بتكتبوها، ونتايجكم في «لوحة الشرف»، والإعدادات، والقضايا اللي بتكتبوها وتحفظوها في المكتبة، واللعبة اللي لسه شغالة، ورصيد «البصمات» وهدية كل يوم. كل دي بتتحفظ جوه التطبيق على الموبايل بتاعك بس، ومش بتتبعت لأي حد. ولو مسحت التطبيق أو بياناته، بتتمسح كلها.</p>
+  <h2>اللعب على أكتر من موبايل («كل واحد على موبايله»)</h2>
+  <p><b>على نفس الواي فاي:</b> موبايل واحد بيعمل «أوضة» والباقيين بيدخلوها على نفس الواي فاي أو الهوت سبوت. أسامي اللاعبين وحركات اللعب بتتنقل بين الموبايلات اللي في نفس الشبكة المحلية بس، ومش بتروح لأي سيرفر على الإنترنت، ومش بتتحفظ عندنا. الأوضة بتقفل وكل بياناتها بتتمسح أول ما المضيف يقفلها أو يقفل التطبيق.</p>
+  <p><b>أونلاين:</b> الموبايلات بتتقابل عن طريق سيرفرات رسايل عامة ومجانية (MQTT) مش تبعنا، زي broker.emqx.io وbroker.hivemq.com وtest.mosquitto.org. كل رسايل اللعب (الأسامي، والأدوار، والأصوات، والحركات) بتتقفل بتشفير من طرف لطرف بين موبايل المضيف وكل لاعب، فالسيرفر بيعدّيها وهو مش قادر يقراها، وإحنا مش بنستقبلها ولا بنحفظها. الحاجة الوحيدة اللي بتبان من غير تشفير هي كارت الأوضة في قايمة «دوّر على أوضة»: اسم الأوضة، واسم المضيف، وعدد اللاعبين، وبيلعبوا إيه دلوقتي، وده عشان صحابك يلاقوا الأوضة. الكارت ده بيتشال أول ما المضيف يقفل الأوضة. وباسورد الأوضة البرايفت مش بيتبعت خالص: بيدخل في مفتاح التشفير على الموبايل نفسه.</p>
+  <h2>المايك والصوت في الأوض الأونلاين</h2>
+  <p>في الأوضة الأونلاين تقدروا تسمعوا بعض من جوه اللعبة. التطبيق بيطلب إذن المايك بس لما تختار «شغّل المايك»، وتقدر ترفض وتسمع الباقيين من غير مايك، أو تقفله في أي وقت من زرار «مايك». الصوت بيروح مباشرة من موبايل لموبايل (WebRTC) ومشفّر، ومحدش بيسمعه غير اللي في الأوضة. الصوت مش بيتسجّل ومش بيتحفظ على أي موبايل ولا أي سيرفر، ومش بيعدّي علينا. عشان الموبايلات تعرف توصل لبعض، التطبيق بيسأل سيرفرات STUN عامة (زي بتاعة Google وCloudflare) عن عنوان الموبايل على النت، والسيرفرات دي مش بتشوف الصوت.</p>
+  <h2>الشات في الأوض الأونلاين</h2>
+  <p>في الأوضة الأونلاين فيه شات بإيموجي وجمل جاهزة، والكتابة الحرة موجودة بس في الأوض البرايفت. رسايل الشات مشفّرة من طرف لطرف زي باقي رسايل اللعب، ومحدش بيقراها غير اللي في الأوضة، ومش بتتحفظ بعد ما الأوضة تتقفل، وإحنا مش بنستقبلها. أي لاعب يقدر يكتم لاعب تاني (شات وصوت)، أو يبلّغ عنه (شوف تحت).</p>
+  <h2>البيانات اللي بتبعتها بإرادتك: «اقترح قضية»</h2>
+  <p>لو استخدمت زرار «اقترح قضية» ودوست «ابعت»، التطبيق بيبعت لينا عنوان القضية، ووصفها، ونوعها، وعدد اللاعبين، واسمك لو كتبته (اسمك اختياري). الاقتراح بيتبعت عن طريق Google Forms، وبيتخزن في جدول الردود الخاص بينا. بنستخدم الاقتراحات دي بس عشان نختار قضايا جديدة للعبة. مبنبيعهاش ومبنشاركهاش مع حد، وبتتنقل بشكل مشفّر (HTTPS). لو عايز نمسح اقتراح بعته، ابعتلنا على الإيميل اللي تحت.</p>
+  <p>ونفس الطريقة (Google Forms وHTTPS) بتستخدمها الحاجات دي، وبرضه بس لما إنت تدوس عليها:</p>
+  <ul>
+    <li><b>«ستوديو القضايا»:</b> لما تبعت قضية كتبتها عشان تدخل «معرض اللاعيبة»، بيتبعت نص القضية واسم الكاتب اللي كتبته.</li>
+    <li><b>القلب في «معرض اللاعيبة»:</b> بيتبعت رقم القضية اللي عجبتك والشهر.</li>
+    <li><b>البلاغ عن لاعب:</b> بيتبعت كود الأوضة، ونوع اللعبة، وسبب البلاغ، واسم اللاعب المبلَّغ عنه وآخر رسايله في الشات، واسمك في الأوضة، عشان نراجع البلاغ.</li>
+  </ul>
+  <h2>إحصائيات مجهولة عن اللعب</h2>
+  <p>لما لعبة تخلص، التطبيق بيسجّل على موبايلك سطر صغير: نوع اللعبة، ورقم القضية أو القصة أو اللغز اللي اتلعب، والسيناريو، وعدد اللاعبين، وكانت على موبايل واحد ولا على الواي فاي ولا أونلاين، والساعة ويوم الأسبوع، والنتيجة. ومرة في اليوم بالكتير، السطور دي بتتبعت لينا عن طريق Google Forms (HTTPS) عشان نعرف أنهي قضايا وألعاب بتتلعب أكتر وإمتى. مفيهاش أسامي اللاعيبة، ولا أي حاجة حد كتبها، ولا رقم للجهاز أو أي حاجة تعرّف مين إنت. تقدر تقفلها من الإعدادات («إحصائيات مجهولة»)، ولما تقفلها بيتمسح اللي لسه متبعتش.</p>
+  <h2>التنبيهات</h2>
+  <p>لو شغّلت «فكّرني بالهدية»، الموبايل نفسه بيطلعلك تنبيه مرة في اليوم. التنبيه ده بيتعمل على الموبايل، ومفيش أي حاجة بتتبعت عشانه.</p>
+  <h2>حاجات مش موجودة في التطبيق</h2>
+  <p>مفيش إعلانات، ولا أدوات تتبّع أو مكتبات تحليلات من شركات تانية (غير الإحصائيات المجهولة اللي فوق)، ولا تسجيل دخول، ولا وصول لجهات الاتصال أو الصور أو الموقع أو الكاميرا. والميكروفون بيشتغل بس في الأوض الأونلاين وبإذنك، زي ما مكتوب فوق.</p>
+  <h2>الأطفال</h2>
+  <p>اللعبة معمولة للعيلة والصحاب، ومحتواها مناسب لسن 13 سنة وأكبر. مبنجمعش بيانات عن قصد من أطفال أقل من 13 سنة.</p>
+  <h2>التواصل</h2>
+  <p>لأي سؤال عن الخصوصية: <b dir="ltr">twisterivx@gmail.com</b></p>
+</section>
+
+<section class="en">
+  <h1>Privacy Policy – «مين الجاني؟» (Who's the Culprit?)</h1>
+  <p>Last updated: September 28, 2026</p>
+  <p>«مين الجاني؟» is a party detective game played offline on one phone, or with everyone on their own phone. We do not create user accounts, we run no servers that receive your data, and we do not collect personal data while you play.</p>
+  <h2>Data stored only on your device</h2>
+  <p>Player names, the scoreboard, settings, the court cases you save to your library, any game in progress, and your in-game coin balance («بصمات») and daily-gift streak are stored locally inside the app on your phone. They are never sent to us or anyone else, and they are deleted when you uninstall the app or clear its data.</p>
+  <h2>Playing on several phones</h2>
+  <p><b>Same Wi-Fi:</b> one phone opens a room and the others join it over the same Wi-Fi network or hotspot. Player names and game actions travel only between the phones on that local network; they are never sent to an internet server and we never receive or store them. The room and its data are discarded when the host closes it or closes the app.</p>
+  <p><b>Online:</b> the phones meet through free public MQTT message brokers that we do not operate (such as broker.emqx.io, broker.hivemq.com and test.mosquitto.org). All game messages (names, roles, votes and actions) are end-to-end encrypted between the host's phone and each player, so the broker relays them without being able to read them, and we never receive or store them. The only unencrypted item is the room's card in the "find a room" list: the room name, the host's name, the player count and what the room is playing, so friends can find it. The card is removed when the host closes the room. A private room's password is never sent; it is only mixed into the encryption key on the phones.</p>
+  <h2>Microphone and voice in online rooms</h2>
+  <p>Online rooms include in-game voice. The app asks for microphone permission only when you choose to turn the mic on; you can refuse and listen only, or mute the mic at any time. Voice goes directly from phone to phone (WebRTC), encrypted, and only the players in the room hear it. Voice is never recorded or stored on any phone or server, and it never passes through us. To let the phones reach each other, the app asks public STUN servers (such as Google's and Cloudflare's) for the phone's internet address; these servers never receive the audio.</p>
+  <h2>Chat in online rooms</h2>
+  <p>Online rooms have a chat with emoji and ready-made lines; free typing is available only in private rooms. Chat messages are end-to-end encrypted like all other game messages, only the players in the room can read them, they are not kept after the room closes, and we never receive them. Any player can mute another player (chat and voice) or report them (see below).</p>
+  <h2>Data you choose to send: "Suggest a case"</h2>
+  <p>If you use the "Suggest a case" feature and tap Send, the app sends us the case title, description, type, suggested player count, and your name if you typed one (optional). Submissions are sent over HTTPS through Google Forms and stored in our form responses. We use them only to choose new cases for the game. We do not sell or share them. To have a suggestion deleted, email us at the address below.</p>
+  <p>The same channel (Google Forms over HTTPS) is used for the following, and again only when you tap them:</p>
+  <ul>
+    <li><b>Case studio:</b> when you submit a case you wrote for the players' gallery, the case text and the author name you typed are sent.</li>
+    <li><b>Hearts in the players' gallery:</b> the id of the case you liked and the month are sent.</li>
+    <li><b>Reporting a player:</b> the room code, the game, the reason, the reported player's name and their latest chat lines, and your name in the room are sent so we can review the report.</li>
+  </ul>
+  <h2>Anonymous play statistics</h2>
+  <p>When a game ends, the app notes one short line on your phone: the kind of game, the case, story or riddle that was played, the script, the number of players, whether it was on one phone, on Wi-Fi or online, the hour and weekday, and the result. At most once a day these lines are sent to us through Google Forms (HTTPS), so we can see which cases and games get played most and when. They contain no player names, nothing anyone typed, and no device ID or anything else that identifies you. You can turn this off in Settings ("Anonymous statistics"); turning it off also deletes anything not yet sent.</p>
+  <h2>Reminders</h2>
+  <p>If you turn on the daily gift reminder, your phone itself shows one notification a day. It is scheduled on the phone, and nothing is sent for it.</p>
+  <h2>What the app does not include</h2>
+  <p>No ads, no third-party analytics or tracking SDKs (only the anonymous statistics above), no login, and no access to contacts, photos, location or camera. The microphone is used only in online rooms and only with your permission, as described above.</p>
+  <h2>Children</h2>
+  <p>The game is made for families and friends and is intended for ages 13 and up. We do not knowingly collect data from children under 13.</p>
+  <h2>Contact</h2>
+  <p>Privacy questions: <b>twisterivx@gmail.com</b></p>
+</section>
+</body>
+</html>
