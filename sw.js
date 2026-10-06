@@ -1,5 +1,5 @@
 // «مين الجاني؟» offline cache. Written by tools/build.py: the cache name changes with every build that changes a file.
-const CACHE = 'qadaya-1025033363d5';
+const CACHE = 'qadaya-01833a73c2c0';
 const FILES = [
  "./",
  "index.html",
