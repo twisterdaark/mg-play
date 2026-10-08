@@ -14,7 +14,7 @@
 <body>
 <section>
   <h1>سياسة الخصوصية لتطبيق «مين الجاني؟»</h1>
-  <p>آخر تحديث: 7 أكتوبر 2026</p>
+  <p>آخر تحديث: 8 أكتوبر 2026</p>
   <p>«مين الجاني؟» لعبة تحقيق جماعية بتتلعب على موبايل واحد من غير نت، أو كل واحد على موبايله. اللعب نفسه مش محتاج حساب، ومش بنجمع بيانات عنك وإنت بتلعب. الحاجة الوحيدة اللي ليها حساب وسيرفر هي «الأصحاب»، وهي اختيارية (شوف «حساب اللعبة والأصحاب» تحت).</p>
   <h2>البيانات اللي بتفضل على موبايلك بس</h2>
   <p>أسامي اللاعبين اللي بتكتبوها، ونتايجكم في «لوحة الشرف»، والإعدادات، والقضايا اللي بتكتبوها وتحفظوها في المكتبة، واللعبة اللي لسه شغالة، ورصيد «البصمات» وهدية كل يوم. كل دي بتتحفظ جوه التطبيق على الموبايل بتاعك بس، ومش بتتبعت لأي حد. ولو مسحت التطبيق أو بياناته، بتتمسح كلها.</p>
@@ -50,6 +50,8 @@
   <p>ولو عندك حساب أصحاب على الأندرويد، الموبايل بيسأل سيرفر الأصحاب كل حوالي ربع ساعة لو فيه رسالة أو دعوة أو هدية جديدة، ويطلعلك تنبيه. ده بيقرا نفس البيانات اللي اللعبة بتقراها ومش بيجمع حاجة جديدة، ومفتاح الدخول اللي بيستخدمه بيفضل على موبايلك. وتقدر تقفل كل نوع من الإعدادات.</p>
   <h2>الإعلانات (اختيارية، في نسخة أندرويد)</h2>
   <p>اللعبة فيها إعلانات بمكافأة بس، وبتظهر بس لما تدوس بنفسك «اتفرج على إعلان» أو «ضاعفها بإعلان» عشان تاخد بصمات. مفيش إعلانات في نص اللعب، ولا في مود الأطفال. الإعلانات دي من Google AdMob، وبتستخدم معرّف الإعلانات بتاع الموبايل، وعنوان الـ IP (عشان تعرف البلد تقريبًا)، ومعلومات عن الجهاز والأعطال، عشان تعرض الإعلان وتقيسه وتمنع الغش. في أوروبا وإنجلترا بنسألك الأول عن موافقتك، وتقدر تغيّرها من الإعدادات («خصوصية الإعلانات»). وتقدر تمسح معرّف الإعلانات أو تقفله من إعدادات الموبايل. سياسة جوجل: <span dir="ltr">https://policies.google.com/technologies/ads</span></p>
+  <h2>شراء البصمات (المشتريات جوه التطبيق، لما تتفتح في نسخة أندرويد)</h2>
+  <p>شحن البصمات بفلوس بيتم بالكامل عن طريق Google Play Billing (الشراء جوه التطبيق). جوجل هي اللي بتاخد بيانات الدفع والكارت، وإحنا عمرنا ما بنشوفها ولا بتوصلنا. جوجل بتبعتلنا بس إثبات للعملية: رقم الشراء (purchase token)، ورقم الطلب، ونوع الباقة، والكمية، ووقت الشراء، ورقم عشوائي للمحفظة (مالوش علاقة باسمك ولا إيميلك) عشان البصمات تنزل في المحفظة الصح. السيرفر بتاعنا (Firebase Cloud Functions من Google) بيتأكد من العملية مع Google Play قبل ما البصمات تنزل، وبيحفظ سجل صغير فيه: رقم المحفظة العشوائي، والباقة، والكمية، وعدد البصمات، ورقم الطلب، ووقت الشراء، وهل اترجعت ولا لأ. رقم الشراء نفسه مش بيتحفظ، بيتحفظ منه بصمة مشفّرة بس (hash) عشان العملية متتحسبش مرتين. لو الفلوس اترجعتلك من جوجل، البصمات بتاعة العملية دي بتتشال من محفظتك. ولو فيه عملية اتدفعت وبصماتها ماوصلتش، جوجل بترجّع فلوسها لوحدها خلال 3 أيام. السجل ده بيفضل محفوظ طول ما الشحن شغّال عشان يمنع إن عملية تتحسب مرتين، ولو عايز تمسحه ابعتلنا على الإيميل اللي تحت.</p>
   <h2>الحفظ على حساب جوجل (اختياري، في نسخة أندرويد)</h2>
   <p>لو دخلت بحساب Google Play Games، اللعبة بتحفظ نسخة من بياناتها (البصمات، والأشكال، والنتايج، والإعدادات، والقضايا اللي كتبتها) على حسابك عند جوجل، عشان ترجّعها على موبايل تاني. الحفظ ده بيتخزن عند جوجل مش عندنا، وبتمسحه من إعدادات Google Play Games (مسح بيانات اللعبة).</p>
   <p>ولو دخلت بحساب جوجل في اللعبة (على الأندرويد أو الموقع)، نسخة من نفس البيانات بتتحفظ كمان على Google Firebase (نفس سيرفرات حساب الأصحاب اللي فوق) عشان تلاقي نفس حاجاتك على كل جهاز تدخل منه بنفس الحساب. النسخة دي محدش يقدر يقراها غيرك، وبتتمسح لما تمسح حسابك من «امسح حسابي»، واللعب على موبايلك بيفضل زي ما هو.</p>
@@ -63,7 +65,7 @@
 
 <section class="en">
   <h1>Privacy Policy – «مين الجاني؟» (Who's the Culprit?)</h1>
-  <p>Last updated: October 7, 2026</p>
+  <p>Last updated: October 8, 2026</p>
   <p>«مين الجاني؟» is a party detective game played offline on one phone, or with everyone on their own phone. Playing needs no account, and we do not collect personal data while you play. The only part with an account and a server is "Friends", and it is optional (see "Game account and friends" below).</p>
   <h2>Data stored only on your device</h2>
   <p>Player names, the scoreboard, settings, the court cases you save to your library, any game in progress, and your in-game coin balance («بصمات») and daily-gift streak are stored locally inside the app on your phone. They are never sent to us or anyone else, and they are deleted when you uninstall the app or clear its data.</p>
@@ -99,6 +101,8 @@
   <p>If you have a friends account on Android, your phone checks the friends server about every 15 minutes for a new message, invite or gift and shows a notification. It reads the same data the game reads and collects nothing new, and the sign-in key it uses stays on your phone. You can turn each kind off in Settings.</p>
   <h2>Ads (optional, Android version)</h2>
   <p>The game has rewarded ads only, and they show only when you tap "Watch an ad" or "Double it with an ad" to get prints. There are no ads during play and none in kids' mode. Ads come from Google AdMob, which uses your phone's advertising ID, IP address (for approximate country), and device and crash information to show and measure ads and to prevent fraud. In the EEA and UK we ask for your consent first, and you can change it in Settings ("Ad privacy"). You can reset or turn off the advertising ID in your phone's settings. Google's policy: https://policies.google.com/technologies/ads</p>
+  <h2>Buying بصمات (in-app purchases, when switched on in the Android version)</h2>
+  <p>Buying بصمات with real money happens entirely through Google Play Billing (in-app purchases). Google handles your payment and card details; we never see them and they never reach us. Google sends us only proof of the purchase: the purchase token, the order ID, the pack, the quantity, the purchase time and a random wallet ID (not linked to your name or email) so the بصمات land in the right wallet. Our server (Firebase Cloud Functions, by Google) checks each purchase with Google Play before any بصمات are added, and keeps a small record: the random wallet ID, the pack, the quantity, the number of بصمات, the order ID, the purchase time and whether it was refunded. The purchase token itself is not stored, only a one-way hash of it, so one purchase can never count twice. If Google refunds a purchase, its بصمات are taken back from your wallet. If a purchase was paid but its بصمات never arrived, Google refunds it by itself within 3 days. The record is kept for as long as purchases are offered, to stop a purchase counting twice; to have yours deleted, email us at the address below.</p>
   <h2>Google account save (optional, Android version)</h2>
   <p>If you sign in to Google Play Games, the game saves a copy of its data (prints, looks, scores, settings and the cases you wrote) to your Google account so you can restore it on another phone. It is stored by Google, not by us; delete it from Google Play Games settings (delete game data).</p>
   <p>If you sign in to the game with your Google account (Android or the website), a copy of the same data is also kept on Google Firebase (the same servers as the friends account above), so you find the same things on every device where you use that account. Only you can read it; it is deleted when you delete your account with "Delete my account", and the data on your phone stays as it is.</p>
